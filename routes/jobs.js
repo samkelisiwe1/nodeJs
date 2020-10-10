@@ -29,6 +29,24 @@ router.get('/' , (req,res) => {
             res.send(results)
         }
     })
-})
+});
+
+
+//get jobs by user id 
+router.get('/:UserID' , (req,res) => {
+    const UserID = req.params.UserID
+
+    let sql = 'SELECT `JobID`, `jobName`, `jodDesc`, `tag`, `price`, `UserID` FROM `jobs` WHERE UserID = ? '
+
+    con.query(sql, [UserID] , (error,results) => {
+
+    if(error){
+        console.log(error)
+    }else{
+        res.send(results)
+    }
+  })
+});
+
 
 module.exports = router ;
