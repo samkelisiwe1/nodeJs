@@ -6,10 +6,10 @@ const con = require('../connection');
 //register new user
 router.post('/register', (req, res) => {
 
-    const { userName, lastName, Email, idNumber, Userpassword, userType } = req.body;
+    const { userName, lastName, Email, idNumber, Userpassword, userType ,  phoneNumber } = req.body;
 
  
-    con.query('INSERT INTO user SET ?', {userName:userName,lastName:lastName,Email:Email,idNumber:idNumber,Userpassword:Userpassword,userType:userType }, (error, results) => {
+    con.query('INSERT INTO user SET ?', {userName:userName,lastName:lastName,Email:Email,idNumber:idNumber,Userpassword:Userpassword,userType:userType ,  phoneNumber: phoneNumber }, (error, results) => {
 
         if (error) {
             res.send({
@@ -28,39 +28,32 @@ router.post('/register', (req, res) => {
 });
 
 
-//logging  in
-router.post('/login',(req,res) => {
-    
-    try {
-        const  { Email , Userpassword } = req.body;
 
-        if (!Email || !Userpassword) {
+ //logging a user
+ router.post('/login', (req, res) => {
+
+    try {
+        const {Email, Userpassword } = req.body;
+      
+
+        if(!Email || ! Userpassword ){
             res.send('please provide an email and password')
         }
 
-        let sql = 'SELECT `UserID`, `userName`,`lastName` `Email`, `idNumber` `Userpassword` `userType` FROM `user` WHERE Email = ?'
+        let sql = 'SELECT `UserID`, `userName`, `lastName`, `Email`, `idNumber`, `Userpassword`, `userType`, `phoneNumber` FROM `user` WHERE Email = ? '
 
-        con.query(sql, [Email], (error, results) => {
+        con.query(sql, [Email] , (error,results) => {
 
-            console.log(results)
-
-            // if (Userpassword == res) {
-            //     res.send(results)
-            //     console.log(Userpassword, results.Userpassword)
-
-
-            // } else {
-
-            //     res.send('Invalid credentials')
-            // }
-
+            res.send(results)
         })
 
     } catch (error) {
-
+        
         console.log(error)
     }
-})
+   
+
+    });
 
 
 module.exports = router;

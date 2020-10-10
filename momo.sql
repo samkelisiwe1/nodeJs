@@ -12,6 +12,8 @@ USE momo;
     Email varchar(30) not null,
     idNumber int(14) not null,
     Userpassword varchar(30) not null,
-    userType varchar(30) not null
+    userType varchar(30) not null,
+    phoneNumber int(10) not null
 );
+
 
