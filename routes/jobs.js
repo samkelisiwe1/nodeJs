@@ -11,6 +11,9 @@ router.post('/',(req,res) => {
         if (error) {
            console.log(error)
         } else {
+          if (results.affectedRows == 1 ){
+              res.send('you have already applied for a job')
+          }
             return res.json({
                 message: "applied for a job",
                 results
