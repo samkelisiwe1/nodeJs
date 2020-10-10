@@ -44,12 +44,21 @@ router.post('/register', (req, res) => {
 
         con.query(sql, [Email] , (error,results) => {
 
-            res.send(results)
+              res.send(results)
+
+            if (Userpassword == results[0].Userpassword){
+               // res.send(results)
+             console.log(Userpassword, results[0].Userpassword)
+
+            }else{  
+
+               console.log('Invalid credentials')
+            }
         })
 
     } catch (error) {
-        
-        console.log(error)
+
+     console.log(error)
     }
    
 
