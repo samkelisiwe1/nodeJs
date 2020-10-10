@@ -10,6 +10,7 @@ app.use(bodyParser.json({}));
  const userRoute  = require('./routes/user');
  app.use('/user',userRoute )
 
-
-
+//jobs route 
+const jobsRoute = require('./routes/jobs');
+app.use('/jobs' , jobsRoute )
 module.exports = app ;
