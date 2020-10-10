@@ -16,4 +16,19 @@ USE momo;
     phoneNumber int(10) not null
 );
 
+create table jobs(
+JobID int(4) primary key auto_increment,
+jobName varchar(250) not null,
+jodDesc varchar (250) not null,
+tag varchar (200) not null ,
+price int (11) not null,
+UserID int(4)
+
+);
+
+
+ALTER TABLE jobs
+ADD CONSTRAINT FK_UserID
+FOREIGN KEY (UserID) REFERENCES User(UserID);
+
 
